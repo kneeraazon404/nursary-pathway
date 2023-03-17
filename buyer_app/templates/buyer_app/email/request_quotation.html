@@ -1,0 +1,59 @@
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}Request for quotation on {{ site_name }}{% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}Hi {% endblocktrans %}Admin,
+
+{% blocktrans %}A quotation request for {{product_name}} was placed on {{ site_name }} by {{buyer_company_name}}.{% endblocktrans %}
+
+Product Detail:
+Product Id: {{product_id}}
+Product Name: {{product_name}}
+Product Category: {{product_category}}
+
+Contact Detail:
+Contact Person: {{buyer_contact_person}}
+Contact Email: {{buyer_email}}
+Contact Number: {{buyer_contact_number}}
+
+Description: {{description}}
+Estimated Delivery Date: {{estimated_delivery_date}}
+
+{% trans "Thanks for using our site!" %}
+
+{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p><strong>{% blocktrans %}Hi {% endblocktrans %}Admin,</strong></p>
+
+<p>{% blocktrans %}A quotation request {{product_name}} was placed on {{ site_name }} by {{buyer_company_name}}.{% endblocktrans %}</p>
+
+<strong>Product Detail:</strong>
+<p><strong>Product Id:</strong> {{product_id}}</p>
+<p><strong>Product Name:</strong> {{product_name}}</p>
+<p><strong>Product Category:</strong> {{product_category}}</p>
+
+{% for img in product_image %}
+<img width="250" src="{{img.image.small_crop}}">
+{% endfor %}
+<br>
+
+<strong>Contact Detail:<strong>
+<p><strong>Contact Person:</strong> {{buyer_contact_person}}</p>
+<p><strong>Contact Email:</strong> {{buyer_email}}</p>
+<p><strong>Contact Number:</strong> {{buyer_contact_number}}</p>
+
+
+<p>Description: {{description}}</p>
+<p>Estimated Delivery Date: {{estimated_delivery_date}}</p>
+
+<p>{% trans "Thanks for using our site!" %}</p>
+
+<p>{% blocktrans %}The {{ site_name }} team{% endblocktrans %}</p>
+
+{% include 'buyer_app/email/style.html' %}
+{% endblock html_body %}

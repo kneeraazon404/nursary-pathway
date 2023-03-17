@@ -1,0 +1,54 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = ">=3.0,<4.0"
+python-decouple = "*"
+djangorestframework = "*"
+django-filter = "*"
+psycopg2-binary = "*"
+pillow = "*"
+djangorestframework-simplejwt = "*"
+ipython = "*"
+django-extensions = "*"
+drf-writable-nested = "*"
+django-debug-toolbar = "*"
+drf-nested-forms = "*"
+djangorestframework-camel-case-2 = "*"
+django-cors-headers = "*"
+djoser = "*"
+drf-spectacular = "*"
+gunicorn = "*"
+celery = {extras = ["redis"], version = "*"}
+dj-rest-auth = {extras = ["with_social"], version = "==2.1.11"}
+django-role-permissions = "*"
+django-versatileimagefield = "*"
+django-rest-resetpassword = "*"
+fcm-django = "*"
+django-mptt = "*"
+django-oauth-toolkit = "*"
+djangorestframework-api-key = "*"
+redis = "*"
+django-celery-beat = "*"
+django-celery-results = "*"
+openpyxl = "*"
+
+[dev-packages]
+black = "*"
+
+[requires]
+python_version = "3.8"
+
+[scripts]
+manage = 'python manage.py'
+server = 'python manage.py runserver'
+shell_plus = 'python manage.py shell_plus'
+c_worker = "celery -A config worker -Q geokrishi_supplier -l info -n geokrishi_supplier@%n"
+beat = "celery -A config beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler"
+test = "python manage.py test -n"
+g_server = "gunicorn --bind unix:./supplier.sock --access-logfile - --workers 1 config.wsgi:application --reload"
+
+[pipenv]
+allow_prereleases = true

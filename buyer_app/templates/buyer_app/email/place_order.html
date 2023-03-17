@@ -1,0 +1,56 @@
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}Order placed on {{ site_name }}{% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}Hi {% endblocktrans %}Admin,
+
+{% blocktrans %}An order for {{product_name}} with quantity of {{quantity}} was placed on {{ site_name }} by {{buyer_company_name}}.{% endblocktrans %}
+
+Product Detail:
+Product Id: {{product_id}}
+Product Name: {{product_name}}
+Product Category: {{product_category}}
+
+Buyer Contact Detail:
+Contact Person: {{buyer_contact_person}}
+Contact Email: {{buyer_email}}
+Contact Number: {{buyer_contact_number}}
+
+Quantity: {{quantity}}
+Description: {{description}}
+Offered Price: {{offer}}
+
+{% trans "Thanks for using our site!" %}
+
+{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p><strong>{% blocktrans %}Hi {% endblocktrans %}Admin,</strong></p>
+
+<p>{% blocktrans %}An order for {{product_name}} with quantity of {{quantity}} was placed on {{ site_name }} by {{buyer_company_name}}.{% endblocktrans %}</p>
+
+<strong>Product Detail:</strong>
+<p><strong>Product Id:</strong> {{product_id}}</p>
+<p><strong>Product Name:</strong> {{product_name}}</p>
+<p><strong>Product Category:</strong> {{product_category}}</p>
+
+<strong>Buyer Contact Detail:</strong>
+<p><strong>Contact Person:</strong> {{buyer_contact_person}}</p>
+<p><strong>Contact Email:</strong> {{buyer_email}}</p>
+<p><strong>Contact Number:</strong> {{buyer_contact_number}}</p>
+
+
+<p>Quantity: {{quantity}}</p>
+<p>Description: {{description}}</p>
+<p>Offered Price: {{offer}}</p>
+
+<p>{% trans "Thanks for using our site!" %}</p>
+
+<p>{% blocktrans %}The {{ site_name }} team{% endblocktrans %}</p>
+
+{% include 'buyer_app/email/style.html' %}
+{% endblock html_body %}
